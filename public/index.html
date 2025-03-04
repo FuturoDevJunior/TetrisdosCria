@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris dos Cria - Jogo Clássico com Visual Neon</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Jogo Tetris clássico em versão moderna com visual neon e jogabilidade suave para jogar gratuitamente online">
+    <meta name="keywords" content="tetris, jogo, quebra-cabeça, blocos, neon, português, gratuito, online, html5">
+    <meta name="author" content="FuturoDevJunior">
+    
+    <!-- Favicons -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tetris-dos-cria.vercel.app/">
+    <meta property="og:title" content="Tetris dos Cria - Jogo Clássico com Visual Neon">
+    <meta property="og:description" content="Jogue o clássico Tetris com visual moderno neon e efeitos especiais. Gratuito para jogar online!">
+    <meta property="og:image" content="https://tetris-dos-cria.vercel.app/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://tetris-dos-cria.vercel.app/">
+    <meta property="twitter:title" content="Tetris dos Cria - Jogo Clássico com Visual Neon">
+    <meta property="twitter:description" content="Jogue o clássico Tetris com visual moderno neon e efeitos especiais. Gratuito para jogar online!">
+    <meta property="twitter:image" content="https://tetris-dos-cria.vercel.app/og-image.jpg">
+    
+    <!-- Preconexões para melhorar performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <div class="score-container">
+                <div class="score-box">
+                    <span class="score-label">PONTUAÇÃO</span>
+                    <span id="score" class="score-value">0</span>
+                </div>
+                <div class="score-box">
+                    <span class="score-label">RECORDE</span>
+                    <span id="highscore" class="score-value">0</span>
+                </div>
+                <div class="score-box">
+                    <span class="score-label">NÍVEL</span>
+                    <span id="level" class="score-value">1</span>
+                </div>
+                <div class="score-box">
+                    <span class="score-label">LINHAS</span>
+                    <span id="lines" class="score-value">0</span>
+                </div>
+            </div>
+            <div class="next-piece-container">
+                <span class="next-label">PRÓXIMA PEÇA</span>
+                <canvas id="next-piece" width="100" height="100"></canvas>
+            </div>
+        </div>
+
+        <div class="game-board-container">
+            <canvas id="game-board" width="300" height="600"></canvas>
+            <canvas id="particles-canvas" width="300" height="600"></canvas>
+        </div>
+
+        <div class="controls">
+            <button id="start-btn" class="neon-button">INICIAR</button>
+            <div class="mobile-controls">
+                <button id="left-btn" class="control-btn">←</button>
+                <button id="rotate-btn" class="control-btn">↑</button>
+                <button id="down-btn" class="control-btn">↓</button>
+                <button id="right-btn" class="control-btn">→</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-over" class="game-over hidden">
+        <div class="game-over-content">
+            <h2>FIM DE JOGO</h2>
+            <p>Sua pontuação: <span id="final-score">0</span></p>
+            <button id="restart-btn" class="neon-button">JOGAR NOVAMENTE</button>
+        </div>
+    </div>
+
+    <footer class="creditos">
+        Desenvolvido com 💚 por
+        <a href="https://linkedin.com/in/DevFerreiraG" class="neon-badge" target="_blank" rel="noopener">
+            DevFerreiraG
+        </a>
+    </footer>
+
+    <script src="tetris.js"></script>
+    
+    <!-- Script para registrar o service worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registrado com sucesso:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Falha ao registrar o Service Worker:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

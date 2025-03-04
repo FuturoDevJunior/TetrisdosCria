@@ -1,0 +1,338 @@
+/* Estilos Globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0f0f0f 0%, #121212 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    padding: 20px;
+}
+
+/* Container do Jogo */
+.game-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: rgba(20, 20, 20, 0.8);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+    border: 1px solid rgba(0, 255, 136, 0.1);
+    transition: all 0.3s ease;
+}
+
+.game-container:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+}
+
+/* Cabeçalho do Jogo */
+.game-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Score e Highscore */
+.score-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    width: 60%;
+}
+
+.score-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.score-label {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.score-value {
+    font-size: 1.2rem;
+    color: #00ff88;
+    text-shadow: 0 0 8px rgba(0, 255, 136, 0.7);
+    font-weight: bold;
+}
+
+/* Próxima Peça */
+.next-piece-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35%;
+}
+
+.next-label {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+#next-piece {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 4px;
+}
+
+/* Tabuleiro do Jogo */
+.game-board-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+#game-board {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(0, 255, 136, 0.5);
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+}
+
+#particles-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+/* Controles */
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+}
+
+.neon-button {
+    background-color: transparent;
+    color: #00ff88;
+    border: 1px solid #00ff88;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.neon-button:hover {
+    background-color: rgba(0, 255, 136, 0.1);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+    transform: translateY(-2px);
+}
+
+.neon-button:active {
+    transform: translateY(1px);
+}
+
+.mobile-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #00ff88;
+    border: 1px solid rgba(0, 255, 136, 0.5);
+    border-radius: 50%;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 8px rgba(0, 255, 136, 0.2);
+}
+
+.control-btn:hover {
+    background-color: rgba(0, 255, 136, 0.1);
+    box-shadow: 0 0 12px rgba(0, 255, 136, 0.4);
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+/* Animação e Efeitos para as Peças */
+.piece {
+    animation: float 2s ease-in-out infinite;
+    box-shadow: 0 0 15px #00ff88;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Game Over */
+.game-over {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.game-over-content {
+    background-color: rgba(20, 20, 20, 0.95);
+    border: 1px solid rgba(0, 255, 136, 0.5);
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+    animation: fadeIn 0.5s ease;
+}
+
+.game-over h2 {
+    color: #00ff88;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.7);
+}
+
+.game-over p {
+    margin-bottom: 25px;
+    font-size: 1.2rem;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Rodapé com marca d'água */
+.creditos {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(0, 255, 136, 0.1);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.neon-badge {
+    display: inline-block;
+    color: #00ff88;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px rgba(0, 255, 136, 0.2);
+    font-weight: bold;
+}
+
+.neon-badge:hover {
+    background-color: rgba(0, 255, 136, 0.2);
+    box-shadow: 0 0 12px rgba(0, 255, 136, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Animações */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes glowText {
+    0%, 100% { text-shadow: 0 0 5px rgba(0, 255, 136, 0.5); }
+    50% { text-shadow: 0 0 15px rgba(0, 255, 136, 0.8); }
+}
+
+/* Media Queries */
+@media (max-width: 600px) {
+    .game-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .score-container, .next-piece-container {
+        width: 100%;
+    }
+    
+    .next-piece-container {
+        order: -1;
+    }
+    
+    .mobile-controls {
+        display: flex;
+    }
+    
+    .creditos {
+        font-size: 0.8rem;
+        flex-wrap: wrap;
+        padding: 15px 10px;
+    }
+}
+
+@media (min-width: 601px) {
+    .mobile-controls {
+        display: none;
+    }
+}
+
+/* Animação de pulso para a marca d'água */
+.neon-badge {
+    animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(0, 255, 136, 0.6);
+    }
+}

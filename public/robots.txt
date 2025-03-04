@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tetris-dos-cria.vercel.app/sitemap.xml
