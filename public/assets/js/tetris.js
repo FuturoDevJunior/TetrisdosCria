@@ -1403,8 +1403,8 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
         const game = new TetrisGame();
         
-        // Mostra instruções antes de começar - sem início automático
-        game.showInstructions();
+        // Inicia o jogo diretamente - sem mostrar popup de instruções
+        // O painel lateral já mostra as instruções
         
         // Adiciona comunicação com o mundo real através de mensagens
         window.addEventListener('message', (event) => {
@@ -1425,6 +1425,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         break;
                     case 'reset':
                         game.resetGame();
+                        break;
+                    case 'canvasResized':
+                        // Recalcula o tamanho da célula baseado no novo tamanho do canvas
+                        if (game.canvas) {
+                            game.cellSize = game.canvas.width / game.boardWidth;
+                            // Re-renderiza o jogo com o novo tamanho
+                            if (game.isRunning && !game.isPaused) {
+                                game.render();
+                            }
+                        }
                         break;
                 }
             }

@@ -104,7 +104,53 @@
     
     <!-- Script para iniciar o jogo automaticamente -->
     <script>
+        // Função para redimensionar o canvas de forma responsiva
+        function resizeGameCanvas() {
+            const gameContainer = document.querySelector('.game-board-container');
+            const gameBoard = document.getElementById('game-board');
+            const particlesCanvas = document.getElementById('particles-canvas');
+            
+            if (!gameContainer || !gameBoard || !particlesCanvas) return;
+            
+            // Obtém a largura atual do container
+            const containerWidth = gameContainer.clientWidth;
+            
+            // Calcula a altura proporcional (mantendo a proporção 1:2)
+            const newHeight = containerWidth * 2;
+            
+            // Define o novo tamanho do canvas (mantendo a proporção)
+            gameBoard.style.width = `${containerWidth}px`;
+            gameBoard.style.height = `${newHeight}px`;
+            particlesCanvas.style.width = `${containerWidth}px`;
+            particlesCanvas.style.height = `${newHeight}px`;
+            
+            // Importante: atualizar também as propriedades width/height 
+            // para manter a resolução correta do canvas
+            gameBoard.width = containerWidth;
+            gameBoard.height = newHeight;
+            particlesCanvas.width = containerWidth;
+            particlesCanvas.height = newHeight;
+            
+            // Atualiza o jogo para usar o novo tamanho de canvas
+            // Envia mensagem para o objeto do jogo recalcular o cellSize
+            window.postMessage({action: 'canvasResized'}, window.location.origin);
+        }
+        
+        // Redimensiona ao carregar e quando a janela for redimensionada
         window.addEventListener('load', function() {
+            // Primeira execução para configurar o tamanho
+            resizeGameCanvas();
+            
+            // Aguarda um momento para garantir que tudo foi carregado corretamente
+            setTimeout(resizeGameCanvas, 100);
+            
+            // Redimensiona quando a janela mudar de tamanho
+            window.addEventListener('resize', function() {
+                // Debounce para melhor performance
+                clearTimeout(window.resizeTimer);
+                window.resizeTimer = setTimeout(resizeGameCanvas, 100);
+            });
+            
             // Inicia o jogo após 3 segundos para garantir carregamento de recursos
             setTimeout(function() {
                 // Tenta iniciar por mensagem
@@ -123,7 +169,7 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('assets/js/sw.js')
+                navigator.serviceWorker.register('/assets/js/sw.js')
                     .then(registration => {
                         console.log('Service Worker registrado com sucesso:', registration.scope);
                     })
