@@ -1,0 +1,33 @@
+{
+  "name": "tetris-dos-cria",
+  "version": "1.0.0",
+  "description": "Um jogo de Tetris moderno desenvolvido em JavaScript puro com visual neon e jogabilidade suave",
+  "main": "public/index.html",
+  "scripts": {
+    "start": "serve public",
+    "deploy": "vercel --prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FuturoDevJunior/TetrisdosCria.git"
+  },
+  "keywords": [
+    "tetris",
+    "jogo",
+    "javascript",
+    "html5",
+    "canvas",
+    "pwa",
+    "neon"
+  ],
+  "author": "DevFerreiraG",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FuturoDevJunior/TetrisdosCria/issues"
+  },
+  "homepage": "https://tetris-dos-cria.vercel.app",
+  "devDependencies": {
+    "serve": "^14.2.1",
+    "vercel": "^32.5.0"
+  }
+}

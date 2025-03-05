@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tetris dos Cria - Jogo Clássico com Visual Neon</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <meta name="description" content="Jogo Tetris clássico em versão moderna com visual neon e jogabilidade suave para jogar gratuitamente online">
     <meta name="keywords" content="tetris, jogo, quebra-cabeça, blocos, neon, português, gratuito, online, html5">
-    <meta name="author" content="FuturoDevJunior">
+    <meta name="author" content="DevFerreiraG">
     
     <!-- Favicons -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <link rel="icon" href="assets/images/icons/icon-192x192.png" type="image/png">
+    <link rel="apple-touch-icon" sizes="192x192" href="assets/images/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/images/icons/icon-512x512.png">
     
     <!-- PWA -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="assets/manifest.json">
     <meta name="theme-color" content="#00ff88">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -26,14 +26,14 @@
     <meta property="og:url" content="https://tetris-dos-cria.vercel.app/">
     <meta property="og:title" content="Tetris dos Cria - Jogo Clássico com Visual Neon">
     <meta property="og:description" content="Jogue o clássico Tetris com visual moderno neon e efeitos especiais. Gratuito para jogar online!">
-    <meta property="og:image" content="https://tetris-dos-cria.vercel.app/og-image.jpg">
+    <meta property="og:image" content="https://source.unsplash.com/1200x630/?tetris,game,neon">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://tetris-dos-cria.vercel.app/">
     <meta property="twitter:title" content="Tetris dos Cria - Jogo Clássico com Visual Neon">
     <meta property="twitter:description" content="Jogue o clássico Tetris com visual moderno neon e efeitos especiais. Gratuito para jogar online!">
-    <meta property="twitter:image" content="https://tetris-dos-cria.vercel.app/og-image.jpg">
+    <meta property="twitter:image" content="https://source.unsplash.com/1200x630/?tetris,game,neon">
     
     <!-- Preconexões para melhorar performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -90,19 +90,40 @@
     </div>
 
     <footer class="creditos">
-        Desenvolvido com 💚 por
-        <a href="https://linkedin.com/in/DevFerreiraG" class="neon-badge" target="_blank" rel="noopener">
-            DevFerreiraG
-        </a>
+        <div class="dev-signature">
+            <span class="dev-credit">Desenvolvido com <span class="heart">💚</span> por</span>
+            <a href="https://linkedin.com/in/DevFerreiraG" class="neon-badge" target="_blank" rel="noopener">
+                DevFerreiraG
+            </a>
+            <span class="dev-title">Desenvolvedor Full Stack & Game Designer</span>
+            <div class="copyright">&copy; 2023 | Todos os direitos reservados</div>
+        </div>
     </footer>
 
-    <script src="tetris.js"></script>
+    <script src="assets/js/tetris.js"></script>
+    
+    <!-- Script para iniciar o jogo automaticamente -->
+    <script>
+        window.addEventListener('load', function() {
+            // Inicia o jogo após 3 segundos para garantir carregamento de recursos
+            setTimeout(function() {
+                // Tenta iniciar por mensagem
+                window.postMessage({action: 'start'}, window.location.origin);
+                
+                // Fallback: tenta iniciar pelo botão 
+                const startBtn = document.getElementById('start-btn');
+                if (startBtn) {
+                    startBtn.click();
+                }
+            }, 3000);
+        });
+    </script>
     
     <!-- Script para registrar o service worker -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
+                navigator.serviceWorker.register('./assets/js/sw.js')
                     .then(registration => {
                         console.log('Service Worker registrado com sucesso:', registration.scope);
                     })

@@ -1,0 +1,9 @@
+Este é um placeholder para o ícone de 512x512 pixels.
+Para que o PWA funcione corretamente, substitua este arquivo por uma imagem PNG real.
+
+Você pode criar um ícone usando ferramentas online como:
+- https://favicon.io/
+- https://realfavicongenerator.net/
+- https://www.photopea.com/
+
+Nomeie o arquivo como "icon-512x512.png"

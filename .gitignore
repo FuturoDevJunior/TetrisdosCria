@@ -1,25 +1,10 @@
 # Dependências
 node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
 package-lock.json
 yarn.lock
-pnpm-lock.yaml
-
-# Arquivos de build e distribuição
-dist/
-build/
-.vercel/
-
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Arquivos do sistema operacional
-.DS_Store
-Thumbs.db
-desktop.ini
 
 # Arquivos de ambiente
 .env
@@ -28,14 +13,37 @@ desktop.ini
 .env.test.local
 .env.production.local
 
-# Editores e IDEs
-.idea/
+# Build e distribuição
+/dist/
+/build/
+/.next/
+/out/
+
+# Cache
+.cache/
+.parcel-cache/
+.npm/
+
+# Logs
+logs
+*.log
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# IDEs e editores
+/.idea/
 .vscode/
 *.swp
 *.swo
-*.sublime-project
 *.sublime-workspace
+*.sublime-project
 
-# Arquivos temporários
-.tmp/
-.temp/
+# Outros
+.vercel
+.netlify
+coverage/

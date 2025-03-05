@@ -1,0 +1,8 @@
+Este é um placeholder para o favicon.
+Para que o site tenha um ícone na barra de abas do navegador, substitua este arquivo por um arquivo .ico real.
+
+Você pode criar um favicon usando ferramentas online como:
+- https://favicon.io/
+- https://realfavicongenerator.net/
+
+Nomeie o arquivo como "favicon.ico"
