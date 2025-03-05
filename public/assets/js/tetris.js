@@ -356,6 +356,12 @@ class TetrisGame {
         
         this.updateScoreDisplay();
         
+        // Atualiza o texto do botão de iniciar para "PAUSAR"
+        const startBtn = document.getElementById('start-btn');
+        if (startBtn) {
+            startBtn.textContent = 'PAUSAR';
+        }
+        
         // Esconde o game over se estiver visível
         if (this.gameOverElement) {
             this.gameOverElement.classList.add('hidden');
@@ -379,6 +385,11 @@ class TetrisGame {
      */
     resetGame() {
         this.gameOverElement.classList.add('hidden');
+        // Garante que o botão mostrará "PAUSAR" quando o jogo for reiniciado
+        const startBtn = document.getElementById('start-btn');
+        if (startBtn) {
+            startBtn.textContent = 'PAUSAR';
+        }
         this.startGame();
     }
     
@@ -390,6 +401,12 @@ class TetrisGame {
         if (this.gameOver || !this.isRunning) return;
         
         this.isPaused = !this.isPaused;
+        
+        // Atualiza o texto do botão baseado no estado do jogo
+        const startBtn = document.getElementById('start-btn');
+        if (startBtn) {
+            startBtn.textContent = this.isPaused ? 'CONTINUAR' : 'PAUSAR';
+        }
         
         // Mostra ou esconde indicador visual de pausa
         if (this.isPaused) {
@@ -1117,6 +1134,12 @@ class TetrisGame {
     showGameOver() {
         if (this.finalScoreElement) {
             this.finalScoreElement.textContent = this.score;
+        }
+        
+        // Redefine o botão para "INICIAR"
+        const startBtn = document.getElementById('start-btn');
+        if (startBtn) {
+            startBtn.textContent = 'INICIAR';
         }
         
         if (this.gameOverElement) {

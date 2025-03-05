@@ -3,13 +3,13 @@ const CACHE_NAME = 'tetris-dos-cria-v2';
 
 // Arquivos para armazenar em cache (permitem funcionamento offline)
 const urlsToCache = [
-  './',
-  './index.html',
-  './style.css',
-  './tetris.js',
-  './manifest.json',
-  './icons/icon-192x192.png',
-  './icons/icon-512x512.png'
+  '/',
+  '/index.html',
+  '/assets/css/style.css',
+  '/assets/js/tetris.js',
+  '/assets/manifest.json',
+  '/assets/images/icons/icon-192x192.png',
+  '/assets/images/icons/icon-512x512.png'
 ];
 
 // Instalação do service worker e cacheamento de recursos
