@@ -89,6 +89,116 @@
         </div>
     </div>
 
+    <div class="game-instructions">
+        <button id="instructions-toggle" class="neon-button small">COMO JOGAR</button>
+        <div id="instructions-panel" class="instructions-content hidden">
+            <h3>Como Jogar Tetris dos Cria</h3>
+            
+            <div class="rules-section">
+                <h4>Para Iniciantes</h4>
+                <p>O Tetris é um jogo de quebra-cabeça onde peças de diferentes formatos (chamadas Tetriminos) caem do topo da tela.</p>
+                <p>Seu objetivo é movimentar e girar essas peças para criar linhas horizontais completas que desaparecerão, marcando pontos.</p>
+                <p>À medida que você limpa linhas, o jogo fica mais rápido. O jogo termina quando as peças se empilham até o topo da tela.</p>
+            </div>
+            
+            <div class="rules-section">
+                <h4>As Peças</h4>
+                <div class="tetromino-gallery">
+                    <div class="tetromino-item">
+                        <div class="tetromino-shape i-piece"></div>
+                        <span>I-Peça</span>
+                    </div>
+                    <div class="tetromino-item">
+                        <div class="tetromino-shape t-piece"></div>
+                        <span>T-Peça</span>
+                    </div>
+                    <div class="tetromino-item">
+                        <div class="tetromino-shape o-piece"></div>
+                        <span>O-Peça</span>
+                    </div>
+                    <div class="tetromino-item">
+                        <div class="tetromino-shape l-piece"></div>
+                        <span>L-Peça</span>
+                    </div>
+                    <div class="tetromino-item">
+                        <div class="tetromino-shape j-piece"></div>
+                        <span>J-Peça</span>
+                    </div>
+                    <div class="tetromino-item">
+                        <div class="tetromino-shape s-piece"></div>
+                        <span>S-Peça</span>
+                    </div>
+                    <div class="tetromino-item">
+                        <div class="tetromino-shape z-piece"></div>
+                        <span>Z-Peça</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rules-section">
+                <h4>Pontuação</h4>
+                <ul>
+                    <li><strong>1 linha:</strong> 100 × nível</li>
+                    <li><strong>2 linhas:</strong> 300 × nível</li>
+                    <li><strong>3 linhas:</strong> 500 × nível</li>
+                    <li><strong>4 linhas:</strong> 800 × nível</li>
+                    <li><strong>Combo:</strong> Limpar linhas consecutivamente multiplica seus pontos!</li>
+                </ul>
+            </div>
+            
+            <div class="rules-section">
+                <h4>Dicas para Iniciantes</h4>
+                <ul>
+                    <li>Mantenha o tabuleiro o mais plano possível</li>
+                    <li>Deixe uma coluna livre para a peça I (longa)</li>
+                    <li>Use a queda rápida (Espaço) para posicionar peças mais rapidamente</li>
+                    <li>Mantenha atenção na próxima peça para planejar seu movimento</li>
+                </ul>
+            </div>
+
+            <p class="close-instructions">Clique no botão "FECHAR" para voltar ao jogo</p>
+            <button id="instructions-close" class="neon-button small">FECHAR</button>
+        </div>
+    </div>
+
+    <div class="future-features">
+        <button id="roadmap-toggle" class="neon-button small">PRÓXIMAS ATUALIZAÇÕES</button>
+        <div id="roadmap-panel" class="roadmap-content hidden">
+            <h3>Future Roadmap - Tetris dos Cria</h3>
+            <div class="feature-section">
+                <span class="feature-badge coming-soon">Em Breve</span>
+                <h4>Expansões de Gameplay</h4>
+                <ul>
+                    <li>Sistema Hold Piece (guardar peças)</li>
+                    <li>Preview de 3+ peças futuras</li>
+                    <li>Modos de jogo: Sprint e Ultra</li>
+                    <li>T-Spin e técnicas avançadas</li>
+                </ul>
+            </div>
+            <div class="feature-section">
+                <span class="feature-badge planned">Planejado</span>
+                <h4>Multiplayer & Social</h4>
+                <ul>
+                    <li>Batalhas 1v1 em tempo real</li>
+                    <li>Tabelas de classificação global</li>
+                    <li>Sistema de conquistas</li>
+                    <li>Compartilhamento de replays</li>
+                </ul>
+            </div>
+            <div class="feature-section">
+                <span class="feature-badge future">Futuro</span>
+                <h4>Experiência Premium</h4>
+                <ul>
+                    <li>Temas visuais exclusivos</li>
+                    <li>Efeitos de partículas personalizados</li>
+                    <li>Modo história com progressão</li>
+                    <li>Eventos temáticos sazonais</li>
+                </ul>
+            </div>
+            <p class="feedback-cta">Tem uma ideia para o jogo? <a href="https://github.com/FuturoDevJunior/TetrisdosCria/issues" target="_blank">Sugira no GitHub!</a></p>
+        </div>
+    </div>
+
     <footer class="creditos">
         <div class="dev-signature">
             <span class="dev-credit">Desenvolvido com <span class="heart">💚</span> por</span>
@@ -151,6 +261,38 @@
                 window.resizeTimer = setTimeout(resizeGameCanvas, 100);
             });
             
+            // Setup do botão de roadmap para mostrar/esconder o painel
+            const roadmapToggle = document.getElementById('roadmap-toggle');
+            const roadmapPanel = document.getElementById('roadmap-panel');
+            
+            if (roadmapToggle && roadmapPanel) {
+                roadmapToggle.addEventListener('click', function() {
+                    roadmapPanel.classList.toggle('hidden');
+                    roadmapToggle.textContent = roadmapPanel.classList.contains('hidden') 
+                        ? 'PRÓXIMAS ATUALIZAÇÕES' 
+                        : 'FECHAR';
+                });
+            }
+            
+            // Setup do botão de instruções para mostrar/esconder o painel
+            const instructionsToggle = document.getElementById('instructions-toggle');
+            const instructionsPanel = document.getElementById('instructions-panel');
+            const instructionsClose = document.getElementById('instructions-close');
+            
+            if (instructionsToggle && instructionsPanel) {
+                instructionsToggle.addEventListener('click', function() {
+                    instructionsPanel.classList.remove('hidden');
+                    instructionsToggle.textContent = 'FECHAR';
+                });
+                
+                if (instructionsClose) {
+                    instructionsClose.addEventListener('click', function() {
+                        instructionsPanel.classList.add('hidden');
+                        instructionsToggle.textContent = 'COMO JOGAR';
+                    });
+                }
+            }
+            
             // Inicia o jogo após 3 segundos para garantir carregamento de recursos
             setTimeout(function() {
                 // Tenta iniciar por mensagem
@@ -178,6 +320,23 @@
                     });
             });
         }
+        
+        // Easter Egg: Konami Code
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    // Ativa o modo arco-íris
+                    document.body.classList.toggle('rainbow-mode');
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
     </script>
 </body>
 </html>

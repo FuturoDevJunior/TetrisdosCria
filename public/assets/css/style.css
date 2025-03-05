@@ -78,7 +78,8 @@ body {
     font-size: 1.2rem;
     color: #00ff88;
     text-shadow: 0 0 8px rgba(0, 255, 136, 0.7);
-    font-weight: bold;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 /* Próxima Peça */
@@ -112,12 +113,17 @@ body {
     margin: 0 auto;
 }
 
-#game-board {
+#game-board, #particles-canvas {
     display: block;
     background-color: rgba(0, 0, 0, 0.5);
     border: 2px solid rgba(0, 255, 136, 0.5);
     border-radius: 4px;
     box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+    transition: filter 0.3s ease;
+}
+
+.isPaused #game-board, .isPaused #particles-canvas {
+    filter: blur(2px) brightness(0.7);
 }
 
 #particles-canvas {
@@ -333,6 +339,278 @@ body {
     50% { text-shadow: 0 0 15px rgba(0, 255, 136, 0.8); }
 }
 
+/* Estilos para o Painel de Instruções */
+.game-instructions {
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+    position: relative;
+}
+
+.instructions-content {
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #00ff88;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 15px;
+    color: #fff;
+    text-align: left;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.instructions-content h3 {
+    color: #00ff88;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.7);
+}
+
+.rules-section {
+    margin-bottom: 20px;
+    position: relative;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+.rules-section h4 {
+    color: #00ffcc;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 255, 136, 0.3);
+    padding-bottom: 5px;
+}
+
+.rules-section p {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.rules-section ul {
+    list-style-type: none;
+    padding-left: 15px;
+}
+
+.rules-section li {
+    margin-bottom: 8px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.rules-section li:before {
+    content: "✓";
+    color: #00ff88;
+    position: absolute;
+    left: -15px;
+}
+
+.tetromino-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.tetromino-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.tetromino-shape {
+    width: 60px;
+    height: 60px;
+    position: relative;
+}
+
+/* Shapes for tetrominos */
+.tetromino-shape:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 15px 15px;
+    background-position: center;
+    box-shadow: 0 0 10px currentColor;
+}
+
+.i-piece:before {
+    background-image: linear-gradient(to right, #00ffff 25%, transparent 25%, transparent 75%, transparent 75%),
+                     linear-gradient(to right, transparent 25%, #00ffff 25%, #00ffff 75%, transparent 75%),
+                     linear-gradient(to right, transparent 25%, #00ffff 25%, #00ffff 75%, transparent 75%),
+                     linear-gradient(to right, transparent 25%, #00ffff 25%, #00ffff 75%, transparent 75%);
+    color: #00ffff;
+}
+
+.t-piece:before {
+    background-image: linear-gradient(to right, transparent 25%, #800080 25%, #800080 75%, transparent 75%),
+                     linear-gradient(to right, #800080 25%, #800080 25%, #800080 75%, #800080 75%),
+                     linear-gradient(to right, transparent 25%, transparent 25%, transparent 75%, transparent 75%),
+                     linear-gradient(to right, transparent 25%, transparent 25%, transparent 75%, transparent 75%);
+    color: #800080;
+}
+
+.o-piece:before {
+    background-image: linear-gradient(to right, #ffff00 25%, #ffff00 25%, #ffff00 75%, transparent 75%),
+                     linear-gradient(to right, #ffff00 25%, #ffff00 25%, #ffff00 75%, transparent 75%),
+                     linear-gradient(to right, transparent 25%, transparent 25%, transparent 75%, transparent 75%),
+                     linear-gradient(to right, transparent 25%, transparent 25%, transparent 75%, transparent 75%);
+    color: #ffff00;
+}
+
+.l-piece:before {
+    background-image: linear-gradient(to right, transparent 25%, transparent 25%, #ff7f00 75%, transparent 75%),
+                     linear-gradient(to right, #ff7f00 25%, #ff7f00 25%, #ff7f00 75%, transparent 75%),
+                     linear-gradient(to right, transparent 25%, transparent 25%, transparent 75%, transparent 75%),
+                     linear-gradient(to right, transparent 25%, transparent 25%, transparent 75%, transparent 75%);
+    color: #ff7f00;
+}
+
+.j-piece:before {
+    background-image: linear-gradient(to right, #0000ff 25%, transparent 25%, transparent 75%, transparent 75%),
+                     linear-gradient(to right, #0000ff 25%, #0000ff 25%, #0000ff 75%, transparent 75%),
+                     linear-gradient(to right, transparent 25%, transparent 25%, transparent 75%, transparent 75%),
+                     linear-gradient(to right, transparent 25%, transparent 25%, transparent 75%, transparent 75%);
+    color: #0000ff;
+}
+
+.s-piece:before {
+    background-image: linear-gradient(to right, transparent 25%, #00ff00 25%, #00ff00 75%, transparent 75%),
+                     linear-gradient(to right, #00ff00 25%, #00ff00 25%, transparent 75%, transparent 75%),
+                     linear-gradient(to right, transparent 25%, transparent 25%, transparent 75%, transparent 75%),
+                     linear-gradient(to right, transparent 25%, transparent 25%, transparent 75%, transparent 75%);
+    color: #00ff00;
+}
+
+.z-piece:before {
+    background-image: linear-gradient(to right, #ff0000 25%, #ff0000 25%, transparent 75%, transparent 75%),
+                     linear-gradient(to right, transparent 25%, #ff0000 25%, #ff0000 75%, transparent 75%),
+                     linear-gradient(to right, transparent 25%, transparent 25%, transparent 75%, transparent 75%),
+                     linear-gradient(to right, transparent 25%, transparent 25%, transparent 75%, transparent 75%);
+    color: #ff0000;
+}
+
+.close-instructions {
+    text-align: center;
+    margin: 20px 0 10px;
+    font-size: 0.9em;
+    color: #aaa;
+}
+
+/* Estilos para o Roadmap de Funcionalidades Futuras */
+.future-features {
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+    position: relative;
+}
+
+.neon-button.small {
+    font-size: 0.9em;
+    padding: 8px 15px;
+    margin: 10px auto;
+}
+
+.roadmap-content {
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #00ff88;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 15px;
+    color: #fff;
+    text-align: left;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.roadmap-content h3 {
+    color: #00ff88;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.7);
+}
+
+.feature-section {
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 15px;
+    border-left: 2px solid rgba(0, 255, 136, 0.4);
+}
+
+.feature-section h4 {
+    color: #00ffcc;
+    margin-bottom: 10px;
+}
+
+.feature-section ul {
+    list-style-type: none;
+    padding-left: 15px;
+}
+
+.feature-section li {
+    margin-bottom: 5px;
+    position: relative;
+    line-height: 1.4;
+}
+
+.feature-section li:before {
+    content: "▸";
+    color: #00ff88;
+    position: absolute;
+    left: -15px;
+}
+
+.feature-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.coming-soon {
+    background-color: rgba(0, 255, 136, 0.2);
+    color: #00ff88;
+    border: 1px solid #00ff88;
+}
+
+.planned {
+    background-color: rgba(255, 217, 0, 0.2);
+    color: #ffd900;
+    border: 1px solid #ffd900;
+}
+
+.future {
+    background-color: rgba(255, 79, 255, 0.2);
+    color: #ff4fff;
+    border: 1px solid #ff4fff;
+}
+
+.feedback-cta {
+    text-align: center;
+    margin-top: 20px;
+    font-style: italic;
+    color: #ccc;
+}
+
+.feedback-cta a {
+    color: #00ff88;
+    text-decoration: none;
+    border-bottom: 1px dotted #00ff88;
+}
+
+.feedback-cta a:hover {
+    text-shadow: 0 0 8px #00ff88;
+}
+
 /* Media Queries */
 @media (max-width: 600px) {
     .game-header {
@@ -363,6 +641,35 @@ body {
     .mobile-controls {
         display: none;
     }
+}
+
+/* Rainbow Mode Easter Egg */
+@keyframes rainbow-bg {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes rainbow-glow {
+    0% { text-shadow: 0 0 10px rgba(255, 0, 0, 0.7); box-shadow: 0 0 15px rgba(255, 0, 0, 0.5); }
+    20% { text-shadow: 0 0 10px rgba(255, 165, 0, 0.7); box-shadow: 0 0 15px rgba(255, 165, 0, 0.5); }
+    40% { text-shadow: 0 0 10px rgba(255, 255, 0, 0.7); box-shadow: 0 0 15px rgba(255, 255, 0, 0.5); }
+    60% { text-shadow: 0 0 10px rgba(0, 128, 0, 0.7); box-shadow: 0 0 15px rgba(0, 128, 0, 0.5); }
+    80% { text-shadow: 0 0 10px rgba(0, 0, 255, 0.7); box-shadow: 0 0 15px rgba(0, 0, 255, 0.5); }
+    100% { text-shadow: 0 0 10px rgba(128, 0, 128, 0.7); box-shadow: 0 0 15px rgba(128, 0, 128, 0.5); }
+}
+
+.rainbow-mode {
+    background: linear-gradient(124deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8f00ff);
+    background-size: 1800% 1800%;
+    animation: rainbow-bg 30s ease infinite;
+}
+
+.rainbow-mode .neon-button,
+.rainbow-mode .score-value,
+.rainbow-mode .roadmap-content h3,
+.rainbow-mode .feature-section h4 {
+    animation: rainbow-glow 5s infinite;
 }
 
 /* Animação de pulso para a marca d'água */

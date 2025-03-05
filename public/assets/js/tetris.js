@@ -408,6 +408,9 @@ class TetrisGame {
             startBtn.textContent = this.isPaused ? 'CONTINUAR' : 'PAUSAR';
         }
         
+        // Adiciona/remove classe para efeito visual
+        document.body.classList.toggle('isPaused', this.isPaused);
+        
         // Mostra ou esconde indicador visual de pausa
         if (this.isPaused) {
             // Desenha overlay de pausa
@@ -791,6 +794,17 @@ class TetrisGame {
         
         // Adiciona à pontuação total
         this.score += pointsEarned;
+        
+        // Feedback tátil em dispositivos móveis
+        if ('vibrate' in navigator) {
+            if (linesCleared === 4) {
+                // Vibração especial para Tetris (4 linhas)
+                navigator.vibrate([50, 30, 100]);
+            } else if (linesCleared > 0) {
+                // Vibração sutil para outras linhas completas
+                navigator.vibrate(50);
+            }
+        }
         
         // Atualiza o nível (a cada 10 linhas)
         const newLevel = Math.floor(this.lines / 10) + 1;
