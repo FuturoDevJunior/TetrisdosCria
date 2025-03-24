@@ -30,7 +30,7 @@
 
 Recriação moderna do clássico jogo Tetris com estética neon vibrante e experiência totalmente responsiva. Desenvolvido como uma aplicação web progressiva (PWA) utilizando apenas JavaScript puro, HTML5 Canvas e CSS3 - sem frameworks ou bibliotecas externas.
 
-**Status do projeto:** ✅ Concluído
+**Status do projeto:** quase lá 
 
 ### Diferenciais técnicos:
 
